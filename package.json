@@ -5,6 +5,7 @@
   "repository": "https://github.com/agmyintmyatoo/lnmss.git",
   "license": "MIT",
   "dependencies": {
-    "async": "^3.2.4"
+    "async": "^3.2.4",
+    "commander": "^10.0.0"
   }
 }

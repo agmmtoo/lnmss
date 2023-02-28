@@ -1,10 +1,12 @@
 const http = require('node:http')
 const fs = require('node:fs')
+const path = require('node:path')
+const mime = require('mime')
 
-const base = '/home/thuyainsoe/lnmss/ch5/public'
+const base = '/home/thuyainsoe/'
 
 http.createServer((req, res) => {
-    const pathname = base + req.url
+    const pathname = path.normalize(base + req.url)
     console.log(pathname)
 
     fs.stat(pathname, (err, stats) => {
@@ -14,8 +16,9 @@ http.createServer((req, res) => {
             res.write('Resource missing 404\n')
             res.end()
         } else {
-            res.setHeader('Content-Type', 'text/html')
-            console.info(stats)
+            const type = mime.getType(pathname)
+            console.log(type)
+            res.setHeader('Content-Type', type)
             const file = fs.createReadStream(pathname)
             file.on('open', () => {
                 res.statusCode = 200

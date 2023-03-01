@@ -9,18 +9,15 @@ program
     .option('-f, --file [file name]', 'Resulting file name')
     .parse(process.argv)
 
-console.log(program.source)
+const { source, file } = program.opts()
 
-if ((program.source === undefined) || (program.file === undefined)) {
+if ((source === undefined) || (file === undefined)) {
     console.error('source and file must be provided')
     process.exit(1)
 }
 
-const photo = program.source
-const file = program.file
-
 const opts = [
-    photo,
+    source,
     "-bordercolor", "snow",
     "-border", "20",
     "-background", "gray60",

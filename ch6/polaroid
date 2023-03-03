@@ -24,7 +24,7 @@ const opts = [
     "-background", "none",
     "-rotate", "6",
     "-background", "black",
-    "(", "+clone", "shadow", "60x8+8", ")",
+    // "(", "+clone", "shadow", "60x8+8", ")",
     "+swap",
     "-background", "none",
     "-thumbnail", "240x240",

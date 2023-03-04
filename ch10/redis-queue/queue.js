@@ -4,6 +4,7 @@ const redis = require('./redis.js')
 
 const server = net.createServer(function (conn) {
     console.log('connected')
+    conn.setEncoding('utf8')
     const client = redis.createClient()
 
     client.on('error', function (err) {

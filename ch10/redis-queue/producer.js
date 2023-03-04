@@ -10,16 +10,17 @@ client.connect('3000', 'localhost', function () {
 
 const logs = spawn('tail', [
     '-f',
-    '/var/log/redis/redis-server.log',
+    // '/var/log/redis/redis-server.log',
     '/var/log/syslog',
 ])
+logs.stderr.setEncoding('utf8')
 
 logs.stdout.setEncoding('utf8')
 logs.stdout.on('data', function (data) {
-    const re = /GET\s(\S+)\sHTTP/g
+    const re = /noobuntu\s(\S+)systemd/g
     const re2 = /\.gif|\.png|\.jpg|\.svg/
-    const parts = re.exec(data)
-    const tst = re2.test(parts[1])
+    const parts = re.exec(data) || []
+    const tst = true
     if (tst) client.write(parts[1])
 })
 

@@ -17,6 +17,11 @@ class Redis extends event.EventEmitter {
     rpush(name, data) {
         this.#store[name] = data
     }
+    lpop(name) {
+        const data = this.#store[name]
+        delete this.#store[name]
+        return data
+    }
 }
 
 module.exports = new Redis()
